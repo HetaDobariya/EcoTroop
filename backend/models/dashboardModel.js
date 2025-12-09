@@ -87,12 +87,22 @@ class DashboardModel {
 
     // Get recent updates
     static getRecentUpdates(limit = 3, callback) {
-        const query = 'SELECT name, date FROM contact ORDER BY contact_id DESC LIMIT ?';
-        db.query(query, [limit], (err, results) => {
-            if (err) return callback(err);
-            callback(null, results);
-        });
-    }
+    // Format date directly in MySQL query
+    const query = `
+        SELECT 
+            name, 
+            -- Convert to ISO format directly
+            DATE_FORMAT(date, '%Y-%m-%dT%T.000Z') as date
+        FROM contact 
+        ORDER BY contact_id DESC 
+        LIMIT ?
+    `;
+    
+    db.query(query, [limit], (err, results) => {
+        if (err) return callback(err);
+        callback(null, results);
+    });
+}
 
     // Get customer graph data
     static getCustomerGraphData(callback) {
@@ -109,6 +119,8 @@ class DashboardModel {
             callback(null, results);
         });
     }
+
+
 }
 
 module.exports = DashboardModel;
