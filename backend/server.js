@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors({ 
   credentials: true, 
-  origin: ['https://eco-troop.vercel.app', 'http://localhost:3001'] 
+  origin: ['https://eco-troop.vercel.app', 'https://eco-troop-if5w.vercel.app'] 
 }));
 
 app.use(express.json());

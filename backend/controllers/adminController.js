@@ -93,15 +93,84 @@ const login = async (req, res) => {
 
 // Logout handler
 const logout = (req, res) => {
-  // Clear cookies
-  res.clearCookie('auth_token');
-  res.clearCookie('user_role');
-  res.clearCookie('token'); // Clear old cookie name for compatibility
-  
-  res.status(200).json({
-    success: true,
-    message: 'Admin logged out successfully'
-  });
+  try {
+    // Log incoming cookies for debugging
+    console.log('Cookies before logout:', req.cookies || 'No cookies found');
+    
+    // Define cookie options that MATCH how cookies were set
+    const cookieOptions = {
+      secure:true, // Most important - must match setting path
+      httpOnly: true, // If your cookies are httpOnly
+      sameSite: 'lax', // or 'strict' based on your setup
+      // If using HTTPS in production, uncomment:
+      // secure: process.env.NODE_ENV === 'production',
+      // If using a domain, include it (for subdomains):
+      // domain: '.yourdomain.com',
+    };
+
+    // Clear ALL possible auth cookies with explicit options
+    res.clearCookie('auth_token', cookieOptions);
+    res.clearCookie('user_role', cookieOptions);
+    res.clearCookie('token', cookieOptions);
+    
+    // Clear any other potential auth cookies
+    const authCookieNames = [
+      'refresh_token',
+      'session_id',
+      'admin_token',
+      'access_token',
+      'Authorization'
+    ];
+    
+    authCookieNames.forEach(cookieName => {
+      res.clearCookie(cookieName, cookieOptions);
+    });
+    
+    // Also check actual cookies in request and clear them
+    if (req.cookies) {
+      Object.keys(req.cookies).forEach(cookieName => {
+        if (cookieName.toLowerCase().includes('auth') || 
+            cookieName.toLowerCase().includes('token') || 
+            cookieName.toLowerCase().includes('session') ||
+            cookieName.toLowerCase().includes('admin')) {
+          res.clearCookie(cookieName, cookieOptions);
+        }
+      });
+    }
+
+    // Destroy session if exists
+    if (req.session) {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error('Session destruction error:', err);
+        } else {
+          console.log('Session destroyed successfully');
+        }
+      });
+    }
+
+    // Prevent caching of logout response
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    // Log successful logout
+    console.log('Logout completed for admin');
+    
+    res.status(200).json({
+      success: true,
+      message: 'Admin logged out successfully',
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    console.error('Logout error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Logout failed. Please try again.',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
 };
 // Get current admin profile
 const getProfile = (req, res) => {

@@ -63,7 +63,7 @@ Payment: ₹${payment} 💰<br>
 has been picked up successfully on ${readableDate}. ✅ 
 Thank you for recycling with us! 🌍 
 
-<p>If you have any feedback, please <a href="http://localhost:3000/feedback" target="_blank">click here to fill out the form</a>.</p>
+<p>If you have any feedback, please <a href="https://eco-troop.vercel.app/feedback" target="_blank">click here to fill out the form</a>.</p>
         `
       };
 
