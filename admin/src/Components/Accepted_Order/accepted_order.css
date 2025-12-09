@@ -1,0 +1,98 @@
+.MuiTableRow-root>* {
+    padding: 10px;
+}
+
+.MuiTableRow-root.MuiTableRow-head>*{
+    font-weight: bold !important;
+} 
+
+.Table td, th {
+    border: none!important;
+}
+
+.Table th, .Table td {
+    width: 75px; /* Set a fixed width for each column */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add "..." if text is too long */
+    white-space: nowrap; /* Prevent text wrapping */
+    padding: 10px;
+    border: 1px solid #b9e4c9; /* Optional: Add borders */
+    position: relative;
+}
+
+.Table:first-child{
+    border-radius: 0.7rem !important;
+}
+
+.emerr{
+        width: 100%;
+        overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.Table {
+    width: 100%; /* Full width */
+    table-layout:fixed; /* Prevents columns from resizing */
+    border-collapse: collapse;
+}
+
+.Table th {
+    position: relative;
+}
+
+.resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    cursor: col-resize; /* Show resize cursor */
+    background-color: transparent;
+}
+
+.Table th:hover .resizer {
+    background-color: #22c55e;
+}
+.status {
+    padding: 8px;
+    border-radius: 9px;
+    background-color: #15803d; /* ✳️ Status color - dark green */
+    color: white; /* ✳️ Text contrast */
+    font-weight: 500;
+}
+
+
+@media screen and (max-width: 1200px)
+{
+    .Table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Enable scrolling */
+    }
+}
+
+
+@media screen and (max-width: 768px)
+{
+    .Table{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 18rem;
+    }
+}
+
+/* Default (no stretching): truncated with ellipsis */
+.address-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* When column is stretched */
+  .address-cell.stretch {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  

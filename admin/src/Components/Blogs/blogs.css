@@ -1,0 +1,110 @@
+/* Blogs.css */
+* {
+  box-sizing: border-box;
+}
+
+.blogs-container {
+    position: relative;
+    padding: 2rem;
+    min-height: 100vh;
+    max-height: 80vh; /* Add max height for scrolling */
+    overflow-y: auto; 
+  }
+  
+  /* Optional: Add some spacing to the bottom to prevent blogs from being cut off */
+.blogs-container::-webkit-scrollbar {
+  width: 8px;
+}
+  .blog-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+  }
+  
+  .add-blog-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background-color: #1a7f1a;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .add-blog-btn:hover {
+    background-color: #145e14;
+  }
+  
+  .blog-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto; /* Center form horizontally */
+  margin-right: auto;
+  }
+  
+  .blog-form input,
+  .blog-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  .blog-item {
+    background-color: white;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-blog-btn:focus {
+    outline: 2px solid #145e14; /* Better focus visibility */
+  }
+
+
+  .submit-btn {
+    background-color: #1a7f1a; /* Green background */
+    color: white; /* White text */
+    padding: 0.75rem 1.5rem; /* Adequate padding */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-weight: bold; /* Make text bold */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for color and scale */
+    width: 100%; /* Full width for the button */
+    margin-top: 1rem; /* Space between form fields and button */
+  }
+  
+  .submit-btn:hover {
+    background-color: #145e14; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale-up effect */
+  }
+  
+  .submit-btn:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(26, 127, 26, 0.7); /* Soft glow effect when focused */
+  }
+  
+
+  @media (max-width: 768px) {
+    .blog-form {
+      padding: 1.2rem;
+      max-width: 100%;
+    }
+  
+    .add-blog-btn {
+      padding: 0.5rem 1rem;
+    }
+  }
