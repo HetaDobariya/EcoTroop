@@ -405,23 +405,57 @@ const loginUser = async (req, res) => {
 
 // Logout user (clear cookies)
 const logoutUser = (req, res) => {
-  // Clear authentication cookies
-  res.clearCookie('auth_token');
-  res.clearCookie('user_role');
-  
-  // Also clear session if it exists (for backward compatibility)
-  if (req.session) {
-    req.session.destroy((err) => {
-      if (err) {
-        console.error('Error destroying session:', err);
+  try {
+    // Clear authentication cookies with explicit options
+    const cookieOptions = {
+      path: '/',
+      httpOnly: true,
+      sameSite: 'none', // or 'lax' based on your needs
+      // If using HTTPS in production, add:
+      // secure: process.env.NODE_ENV === 'production',
+    };
+
+    // Clear cookies with same options used when setting them
+    res.clearCookie('auth_token', cookieOptions);
+    res.clearCookie('user_role', cookieOptions);
+    
+    // Clear any other auth-related cookies
+    const cookieNames = Object.keys(req.cookies || {});
+    cookieNames.forEach(cookieName => {
+      if (cookieName.includes('auth') || cookieName.includes('token') || cookieName.includes('session')) {
+        res.clearCookie(cookieName, cookieOptions);
       }
     });
-  }
 
-  res.status(200).json({
-    success: true,
-    message: 'Logout successful'
-  });
+    // Handle session destruction
+    if (req.session) {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error('Error destroying session:', err);
+        }
+      });
+    }
+
+    // Also clear headers to prevent any caching
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    // Send response
+    res.status(200).json({
+      success: true,
+      message: 'Logout successful',
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    console.error('Logout error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Logout failed',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
 };
 
 module.exports = {
