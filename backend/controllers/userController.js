@@ -408,7 +408,7 @@ const logoutUser = (req, res) => {
   try {
     // Clear authentication cookies with explicit options
     const cookieOptions = {
-      path: '/',
+      secure:true,
       httpOnly: true,
       sameSite: 'none', // or 'lax' based on your needs
       // If using HTTPS in production, add:
