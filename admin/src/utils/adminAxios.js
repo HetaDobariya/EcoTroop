@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const adminAxios = axios.create({
-  baseURL: 'http://localhost:8081',
+  baseURL: 'https://ecotroop-production.up.railway.app',
   withCredentials: true, // Send cookies with every request
 });
 

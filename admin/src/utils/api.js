@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an axios instance with default config
 const api = axios.create({
-  baseURL: 'http://localhost:8081/api',
+  baseURL: 'https://ecotroop-production.up.railway.app',
   headers: {
     'Content-Type': 'application/json',
   },

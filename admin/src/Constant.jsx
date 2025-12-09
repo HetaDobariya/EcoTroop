@@ -1,6 +1,6 @@
 class Constant {
     static  URLs ={
-        ApiUrl : 'http://localhost:8081/api'
+        ApiUrl : 'https://ecotroop-production.up.railway.app/api'
     }
 }
 
