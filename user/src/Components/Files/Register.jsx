@@ -70,7 +70,7 @@ const handleSubmit = (e) => {
 
   
  
-  axios.post(Constant.URLs.ApiUrl +'/otp/request-otp', { email: values.email }, {withCredentials:'true'})
+  axios.post(Constant.URLs.ApiUrl +'/otp/request-otp', { email: values.email })
     .then(res => {
       alert(res.data.message);
       setOtpSent(true);
@@ -82,7 +82,7 @@ const handleSubmit = (e) => {
 
 
 const handleResendOtp = () => {
-  axios.post(Constant.URLs.ApiUrl +'/otp/request-otp', { email: values.email },{withCredentials:'true'})
+  axios.post(Constant.URLs.ApiUrl +'/otp/request-otp', { email: values.email })
     .then(res => {
       alert('New OTP sent to your email');
       setOtpSent(true);
@@ -103,7 +103,7 @@ const handleVerifyOtp = () => {
     .then(res => {
       alert('Registration successful!');
       navigate('/login');
-    },{withCredentials:'true'})
+    })
     .catch(err => {
       const msg = err.response?.data?.message || 'Invalid OTP';
       if (msg === 'OTP expired') {
