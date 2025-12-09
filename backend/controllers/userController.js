@@ -257,15 +257,15 @@ const registerUser = async (req, res) => {
         // Set token as HTTP-only cookie
         res.cookie('auth_token', token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict',
+          secure: true,
+          sameSite: 'none',
           maxAge: 24 * 60 * 60 * 1000,
         });
 
         // Set role cookie
         res.cookie('user_role', 'user', {
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict',
+          secure: true,
+          sameSite: 'none',
           maxAge: 24 * 60 * 60 * 1000,
         });
         
@@ -355,15 +355,15 @@ const loginUser = async (req, res) => {
       // Set token as HTTP-only cookie (secure for production)
       res.cookie('auth_token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-        sameSite: 'strict',
+        secure: true, // Use HTTPS in production
+        sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
       });
 
       // Also set a separate cookie for client-side access if needed
       res.cookie('user_role', user.role || 'user', {
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: true,
+        sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000,
       });
 
