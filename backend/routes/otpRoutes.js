@@ -1,17 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
-const bcrypt = require('bcrypt');
 const transporter = require('../config/email');
 
 // Request OTP for registration
 router.post('/request-otp', (req, res) => {
+  console.log('Received OTP request for email:', req.body.email); // Debug log
+  
   const { email } = req.body;
+
+  // Validate email
+  if (!email || !email.includes('@')) {
+    return res.status(400).json({ message: 'Valid email is required' });
+  }
 
   // Check if user already exists
   const checkUser = 'SELECT * FROM user WHERE email = ?';
   db.query(checkUser, [email], (err, results) => {
-    if (err) return res.status(500).json({ message: 'Server error' });
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ message: 'Server error' });
+    }
 
     if (results.length > 0) {
       return res.status(400).json({ message: 'User already exists' });
@@ -19,26 +28,44 @@ router.post('/request-otp', (req, res) => {
 
     // Proceed to send OTP if user does not exist
     const otp = Math.floor(100000 + Math.random() * 900000);
-    const expiresAt = Date.now() + 1 * 60 * 1000;
+    const expiresAt = Date.now() + 1 * 60 * 1000; // 1 minute
 
     const deleteOld = 'DELETE FROM otp_verification WHERE email = ?';
     const insertOtp = 'INSERT INTO otp_verification (email, otp, expires_at) VALUES (?, ?, ?)';
 
-    db.query(deleteOld, [email], () => {
-      db.query(insertOtp, [email, otp, expiresAt], (err) => {
-        if (err) return res.status(500).json({ message: 'Error saving OTP' });
+    db.query(deleteOld, [email], (deleteErr) => {
+      if (deleteErr) {
+        console.error('Delete old OTP error:', deleteErr);
+        return res.status(500).json({ message: 'Error clearing old OTPs' });
+      }
 
-        res.json({ message: 'OTP is being sent' });
+      db.query(insertOtp, [email, otp, expiresAt], (insertErr) => {
+        if (insertErr) {
+          console.error('Insert OTP error:', insertErr);
+          return res.status(500).json({ message: 'Error saving OTP' });
+        }
 
+        console.log('OTP saved for email:', email);
+        
+        // Send response first
+        res.json({ 
+          success: true, 
+          message: 'OTP sent to your email' 
+        });
+
+        // Then send email
         transporter.sendMail({
-          from: 'omsomani789@gmail.com',
+          from: process.env.EMAIL_USER || 'omsomani789@gmail.com',
           to: email,
-          subject: 'Your OTP',
+          subject: 'Your OTP for ECOTROOP Registration',
           html: `<p>🔑 Your OTP is <b>${otp}</b>. Please enter it to verify your identity. 💡</p>
-              <p style="color: red; font-weight: bold;">⚠️ Warning: Never share your OTP with anyone. If you did not request this, please contact support immediately.</p>`
-        }, (error) => {
-          if (error) return res.status(500).json({ message: 'Error sending OTP' });
-          else console.log('OTP email sent');
+                <p style="color: red; font-weight: bold;">⚠️ Warning: Never share your OTP with anyone. If you did not request this, please contact support immediately.</p>`
+        }, (emailErr, info) => {
+          if (emailErr) {
+            console.error('Error sending email:', emailErr);
+          } else {
+            console.log('OTP email sent:', info.response);
+          }
         });
       });
     });
