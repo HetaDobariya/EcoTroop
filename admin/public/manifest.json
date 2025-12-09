@@ -1,0 +1,8 @@
+{
+  "name": "EcoByte",
+  "short_name": "EcoByte",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00aaff"
+}

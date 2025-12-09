@@ -1,0 +1,120 @@
+.CompactCard{
+    display: flex;
+    flex: 1;
+    height: 9rem!important;
+    border-radius: 0.7rem;
+    color:white;
+    position: relative;
+    cursor:pointer;
+    padding: 1rem;
+    background: linear-gradient(135deg, #a0f0c0, #b5f9c7); 
+}
+
+.CompactCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.3) !important; /* 🟢 added greenish hover shadow */
+}
+
+.radialBar{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.CircularProgressbar{
+    width: 4rem !important;
+    overflow:visible;
+}
+
+.CircularProgressbar-path{
+    stroke: white!important;
+    stroke-width: 12px!important;
+    filter: drop-shadow(2px 4px 6px #b9fbc0);
+}
+
+.CircularProgressbar-trail{
+    display: none;
+}
+
+.CircularProgressbar-text{
+    fill: white!important;
+}
+
+.radialBar>span {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem; /* Adjust size as needed */
+    margin-top: 10px;
+    color: #f0fff4;/* Optional: Darker text */
+  }
+
+  .detail span:first-of-type {
+    font-weight:bold;
+    font-size: 1.8rem; /* Make value even bolder/larger */
+    text-align: center;
+  }
+
+.ExpandedCard{
+    position: absolute;
+    width: 60%;
+    height: 70vh;
+    z-index: 9;
+    left:13rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: linear-gradient(135deg, #b2f7c6, #d2ffe6); /* 🟢 changed background to green gradient */
+    box-shadow: 0 8px 16px rgba(0, 128, 0, 0.3); 
+}
+
+
+.ExpandedCard>span:nth-of-type(1){
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: 0px 0px 15px #caffd0;  
+}
+
+.ExpandedCard>span:nth-of-type(2)
+{
+    color:rgb(179, 178, 178);
+    font-size: 16px;
+}
+
+.chartContainer{
+    width:70%;
+}
+
+@media screen and (max-width: 1200px)
+{
+    .ExpandedCard{
+        top: 2rem;
+        height: 70vh; 
+        left:6rem;
+    }
+}
+
+
+@media screen and (max-width: 768px)
+{
+    .ExpandedCard
+    {
+        top: 8rem;
+        height: 50%;
+        left: 15px;
+        width: 80%;
+        
+    }
+}

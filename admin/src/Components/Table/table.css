@@ -1,0 +1,223 @@
+.MuiTableRow-root>* {
+    padding: 10px;
+}
+
+.MuiTableRow-root.MuiTableRow-head>*{
+    font-weight: bold !important;
+} 
+
+.Table td, th {
+    border: none!important;
+}
+
+.Table th, .Table td {
+    width: 95px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+.Table:first-child{
+    border-radius: 0.7rem !important;
+}
+
+.emerr{
+        width: 100%;
+        overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.Table {
+    width: 100%; /* Full width */
+    table-layout:fixed; /* Prevents columns from resizing */
+    border-collapse: collapse;
+}
+
+.Table th {
+    position: relative;
+}
+
+.resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    cursor: col-resize; /* Show resize cursor */
+    background-color: transparent;
+}
+
+.Table th:hover .resizer {
+    background-color: gray;
+}
+
+.status {
+    padding: 8px;
+    border-radius: 9px;
+}
+
+
+@media screen and (max-width: 1200px)
+{
+    .Table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Enable scrolling */
+    }
+}
+
+
+@media screen and (max-width: 768px)
+{
+    .Table{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 18rem;
+    }
+}
+
+
+.btn-outline-success {
+    color: #198754; /* Bootstrap success green */
+    border: 2px solid #198754;
+    background-color: transparent;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-success:hover {
+    color: white;
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.btn-outline-success:active {
+    background-color: #146c43;
+    border-color: #146c43;
+}
+
+
+.btn-outline-danger {
+    color: #dc3545; /* Bootstrap danger red */
+    border: 2px solid #dc3545;
+    background-color: transparent;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-danger:hover {
+    color: white;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:active {
+    background-color: #a71d2a;
+    border-color: #a71d2a;
+}
+
+
+
+.btn-success {
+    color: #415b8e; /* Bootstrap success green */
+    border: 2px solid #415b8e;
+    background-color: transparent;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+    color: white;
+    background-color:#415b8e;
+    border-color: #415b8e;
+}
+
+.btn-success:active {
+    background-color: #415b8e;
+    border-color: #415b8e;
+}
+
+
+
+/* for form */
+/* Form container inside the row */
+.form-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  /* Input fields */
+  .form-row input[type="text"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    width: 150px;
+    font-size: 14px;
+  }
+  
+  .form-row input[type="text"]:focus {
+    border-color: #007bff;
+  }
+  
+  /* Submit button */
+  .form-row .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .form-row .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Disabled Filling... button */
+  button[disabled].btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: not-allowed;
+  }
+/* Default (no stretching): truncated with ellipsis */
+.address-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* When column is stretched */
+  .address-cell.stretch {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  
+
+  

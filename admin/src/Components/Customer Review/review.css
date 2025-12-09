@@ -1,0 +1,33 @@
+.CustomerReview {
+    /* background: linear-gradient(135deg, #d4f4dd, #b2e5b8);  */
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2); /* ✨ Soft green shadow */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Chart canvas fix (if needed for responsiveness) */
+  .CustomerReview .apexcharts-canvas {
+    width: 100% !important;
+  }
+  
+  /* Optional: Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .CustomerReview {
+    animation: fadeIn 0.6s ease-out;
+  }
+  

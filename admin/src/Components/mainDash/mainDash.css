@@ -1,0 +1,32 @@
+.maindash {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    /* to add scrollable maindash */
+    height: 100vh;       /* or set to the height you want */
+    overflow-y: auto;    /* enables vertical scroll */
+    padding-right: 10px;
+    scrollbar-width: none;         /* Firefox */
+    -ms-overflow-style: none; 
+}
+
+.maindash::-webkit-scrollbar {
+    display: none;                 /* Chrome, Safari */
+  }
+
+@media screen and (max-width: 1200px)
+{
+    .maindash{
+        justify-content: flex-start;
+        margin-top: 2rem;
+    }
+}
+
+
+@media screen and (max-width: 768px)
+{
+    .maindash{
+        align-items: center;
+    }
+}

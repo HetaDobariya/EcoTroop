@@ -1,0 +1,130 @@
+.form-container {
+  
+    width: 420px;
+    background: linear-gradient(135deg, #c8f2b3, #b4e2c9); 
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 15px rgba(0, 128, 0, 0.2);;
+    color: #004d00;
+    border-radius: 20px;
+    padding: 30px 40px;
+  
+  }
+  
+  .bg {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+   background-size: cover;
+   /* filter: brightness(0.5); */
+  
+  }
+  
+  
+  .title {
+    font-size: 36px;
+    text-align: center;
+    color: #004d00;
+  }
+  
+  
+  .input-group {
+  
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 30px 0;
+    color: red;
+  }
+  
+  .input-grouup {
+  
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    color: red;
+  }
+  .input-grouup input {
+   
+    width: 70%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;  
+    border: 2px solid rgba(0, 128, 0, 0.3);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #004d00;
+    padding: 20px 45px 20px 20px;
+  }
+  
+  .input-group input {
+   
+     width: 100%; 
+    height: 100%;
+    background: transparent; 
+    border: none;
+    outline: none;  
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px;
+  }
+  
+  .input-group .icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #006400; 
+  }
+  
+  .remember-forgot {
+    display: flex;
+    accent-color: #fff;
+    margin-right: 4px;
+    padding-left: 8px;
+    padding-bottom: 20px;
+  }
+  
+  .rememberr-forgot {
+   
+    accent-color: #fff;
+    margin-left: 4px;
+    padding-left: 50px;
+   
+  }
+
+  .sign {
+    width: 100%;
+    height: 45px;
+    background: #4CAF50;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  
+  .signup {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 12px 0 15px;
+    color: #004d00;
+    }
+    .oho {
+      color: #198754
+    }
+  
+    .sign:hover {
+      background: #3e8e41; /* hover effect adjusted to dark green */
+  }
